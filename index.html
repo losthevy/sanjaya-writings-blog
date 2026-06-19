@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjaya Writings — Catatan tentang Pajak, Uang, dan Ekonomi</title>
+<meta name="description" content="Tulisan tentang perpajakan, keuangan pribadi, dan ekonomi Indonesia dengan bahasa yang jernih dan membumi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#242020; --ink-soft:#5c5650; --ink-faint:#8c857c;
+    --bg:#ffffff; --bg-soft:#fafaf8; --line:#ece9e2; --line-soft:#f2efe9;
+    --accent:#1a8917; --accent-ink:#0f6310; --tag-bg:#f2f0eb;
+    --maxw:1100px; --read:720px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:#cdeccb}
+
+  header.nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .brand .mark{width:36px;height:36px;border-radius:50%;background:var(--ink);display:grid;place-items:center;color:#fff;font-family:'Source Serif 4',serif;font-weight:700;font-size:19px}
+  .brand .name{font-family:'Source Serif 4',serif;font-weight:700;font-size:21px;letter-spacing:-.01em}
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .nav-right a{font-size:14.5px;color:var(--ink-soft);font-weight:500;transition:color .2s}
+  .nav-right a:hover{color:var(--ink)}
+  .nav-cta{background:var(--ink);color:#fff!important;padding:8px 16px;border-radius:99px;font-size:14px;font-weight:500;transition:background .2s}
+  .nav-cta:hover{background:#000}
+  .nav-search{display:flex;align-items:center;gap:8px;background:var(--bg-soft);border:1px solid var(--line);border-radius:99px;padding:7px 14px;color:var(--ink-faint)}
+  .nav-search input{border:none;background:none;outline:none;font-size:14px;font-family:inherit;width:130px;color:var(--ink)}
+
+  .masthead{border-bottom:1px solid var(--line);background:var(--bg-soft)}
+  .masthead-inner{max-width:var(--maxw);margin:0 auto;padding:60px 24px 54px}
+  .masthead h1{font-family:'Source Serif 4',serif;font-weight:700;font-size:clamp(40px,7vw,82px);letter-spacing:-.03em;line-height:.98;margin-bottom:20px}
+  .masthead p{font-size:clamp(17px,2vw,21px);color:var(--ink-soft);max-width:60ch;margin-bottom:26px}
+  .masthead .meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:14.5px;color:var(--ink-faint)}
+  .masthead .meta b{color:var(--ink);font-weight:600}
+  .masthead .meta .pill{background:var(--ink);color:#fff;padding:8px 18px;border-radius:99px;font-weight:500;cursor:pointer;transition:background .2s}
+  .masthead .meta .pill:hover{background:#000}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 300px;gap:56px}
+  .main-col{padding:42px 0}
+  .side-col{padding:42px 0 42px 40px;border-left:1px solid var(--line)}
+
+  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:8px;overflow-x:auto}
+  .tabs button{background:none;border:none;font-family:inherit;font-size:14.5px;color:var(--ink-faint);padding:14px 0;cursor:pointer;border-bottom:1px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color .2s}
+  .tabs button.active{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
+  .tabs button:hover{color:var(--ink)}
+
+  .post{display:grid;grid-template-columns:1fr 200px;gap:30px;padding:32px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .post:last-child{border-bottom:none}
+  .post .ptext{min-width:0}
+  .post .pauthor{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:13.5px;color:var(--ink-soft)}
+  .post .pauthor .av{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Source Serif 4',serif;font-size:12px;font-weight:700}
+  .post h2{font-family:'Source Serif 4',serif;font-weight:700;font-size:22px;line-height:1.22;letter-spacing:-.01em;margin-bottom:8px;transition:opacity .15s}
+  .post:hover h2{opacity:.72}
+  .post .pdek{font-size:15.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .post .pmeta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-faint);flex-wrap:wrap}
+  .post .pmeta .cat{background:var(--tag-bg);color:var(--ink-soft);padding:5px 11px;border-radius:99px;font-weight:500}
+  .post .pmeta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-faint)}
+  .pthumb{width:200px;height:134px;border-radius:6px;overflow:hidden;background:var(--bg-soft);position:relative}
+  .pthumb img{width:100%;height:100%;object-fit:cover}
+  .pthumb .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;text-align:center;padding:10px}
+  .pthumb .ph .fn{font-size:10.5px;font-weight:500;opacity:.95;word-break:break-all;line-height:1.35;background:rgba(0,0,0,.22);padding:3px 7px;border-radius:5px}
+
+  .g-tax{background:linear-gradient(135deg,#1c3a4f,#2d5470 60%,#3a6a8a)}
+  .g-pf{background:linear-gradient(135deg,#2f5740,#3f6b4f 60%,#5a8568)}
+  .g-inv{background:linear-gradient(135deg,#9c6a1f,#c08a2d 60%,#d6a347)}
+  .g-eco{background:linear-gradient(135deg,#243b52,#2d5470 60%,#42688a)}
+  .g-ptax{background:linear-gradient(135deg,#7e2e12,#b4451f 60%,#cf6238)}
+  .g-beh{background:linear-gradient(135deg,#4a2a45,#6b3a60 60%,#875279)}
+  .g-kfis{background:linear-gradient(135deg,#0f3d2e,#1a6647 60%,#23845a)}
+
+  .post.feat{grid-template-columns:1fr 280px;padding-top:8px}
+  .post.feat .pthumb{width:280px;height:188px}
+  .post.feat h2{font-size:30px;line-height:1.14;margin-bottom:12px}
+  .post.feat .pdek{font-size:16.5px;-webkit-line-clamp:3}
+
+  .side-card{margin-bottom:36px}
+  .side-card h3{font-size:14px;font-weight:700;letter-spacing:.01em;margin-bottom:18px}
+  .side-pick{display:flex;gap:14px;margin-bottom:20px;cursor:pointer}
+  .side-pick .rank{font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:#d6d0c6;line-height:1;width:24px;flex-shrink:0}
+  .side-pick .sp-txt .spa{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);margin-bottom:5px}
+  .side-pick .sp-txt .spa .av{width:18px;height:18px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:10px;font-family:'Source Serif 4',serif;font-weight:700}
+  .side-pick .sp-txt h4{font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;line-height:1.25;letter-spacing:-.005em;transition:opacity .15s}
+  .side-pick:hover h4{opacity:.7}
+  .topic-tags{display:flex;flex-wrap:wrap;gap:9px}
+  .topic-tags span{background:var(--tag-bg);color:var(--ink-soft);font-size:13px;padding:8px 15px;border-radius:99px}
+  .side-about{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .side-about .av-lg{width:54px;height:54px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;margin-bottom:14px}
+  .side-about h4{font-family:'Source Serif 4',serif;font-size:17px;font-weight:700;margin-bottom:7px}
+  .side-about p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin-bottom:14px}
+  .side-about button{width:100%;background:var(--ink);color:#fff;border:none;padding:10px;border-radius:99px;font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .2s}
+  .side-about button:hover{background:#000}
+  .side-sticky{position:sticky;top:88px}
+
+  footer{border-top:1px solid var(--line);background:var(--bg-soft);margin-top:20px}
+  .foot-inner{max-width:var(--maxw);margin:0 auto;padding:42px 24px;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-faint)}
+  .foot-links a{cursor:pointer}
+  .foot-links a:hover{color:var(--ink)}
+  .foot-copy{font-size:13.5px;color:var(--ink-faint)}
+
+  .article-view{display:none;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .art-inner{max-width:var(--read);margin:0 auto;padding:0 24px}
+  .back-btn{display:inline-flex;align-items:center;gap:7px;color:var(--ink-faint);font-size:14px;font-weight:500;margin:32px 0 28px;cursor:pointer;transition:color .2s}
+  .back-btn:hover{color:var(--ink)}
+  .art-cat{display:inline-block;background:var(--tag-bg);color:var(--ink-soft);font-size:13px;font-weight:500;padding:6px 14px;border-radius:99px;margin-bottom:20px}
+  .art-title{font-family:'Source Serif 4',serif;font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.13;letter-spacing:-.022em;margin-bottom:16px}
+  .art-dek{font-size:clamp(18px,2.4vw,22px);color:var(--ink-faint);line-height:1.4;margin-bottom:28px;font-weight:400}
+  .art-byline{display:flex;align-items:center;gap:13px;padding-bottom:24px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  .avatar{width:48px;height:48px;border-radius:50%;background:var(--ink);display:grid;place-items:center;color:#fff;font-family:'Source Serif 4',serif;font-weight:700;font-size:20px;flex-shrink:0}
+  .byline-txt b{display:block;font-size:15.5px;font-weight:600}
+  .byline-txt span{font-size:13.5px;color:var(--ink-faint)}
+
+  .art-hero-img{margin:34px 0 8px}
+  .art-hero-img .frame{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;position:relative}
+  .art-hero-img .frame img{width:100%;height:100%;object-fit:cover}
+  .art-hero-img .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;padding:20px}
+  .art-hero-img .ph .fn{font-size:13px;font-weight:500;background:rgba(0,0,0,.25);padding:6px 13px;border-radius:7px}
+  .art-hero-img figcaption{font-size:13px;color:var(--ink-faint);text-align:center;margin-top:10px;font-style:italic}
+
+  .art-body{max-width:var(--read);margin:30px auto 0;padding:0 24px}
+  .art-body p{font-family:'Source Serif 4',serif;font-size:20px;line-height:1.72;color:#2a2622;margin-bottom:26px;letter-spacing:-.003em}
+  .art-body h2{font-family:'Source Serif 4',serif;font-weight:700;font-size:28px;letter-spacing:-.015em;margin:44px 0 12px}
+  .art-body strong{font-weight:700}
+  .art-body em{font-style:italic}
+  .art-body a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px}
+  .art-body ul,.art-body ol{margin:0 0 26px 24px}
+  .art-body li{font-family:'Source Serif 4',serif;font-size:20px;line-height:1.6;color:#2a2622;margin-bottom:10px}
+  .art-body blockquote{border-left:3px solid var(--ink);padding:4px 0 4px 26px;margin:32px 0;font-family:'Source Serif 4',serif;font-style:italic;font-size:24px;line-height:1.4;color:#33302b}
+  .pullstat{display:flex;gap:24px;flex-wrap:wrap;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin:32px 0}
+  .pullstat .item{flex:1;min-width:130px}
+  .pullstat .item .n{font-family:'Source Serif 4',serif;font-size:30px;font-weight:700;color:var(--ink);line-height:1}
+  .pullstat .item .l{font-size:13px;color:var(--ink-faint);margin-top:6px;line-height:1.4}
+  .callout{background:#eef6ee;border:1px solid #cfe6ce;border-radius:10px;padding:18px 22px;margin:30px 0}
+  .callout p{font-family:'Inter'!important;font-size:15.5px!important;color:var(--accent-ink)!important;margin:0!important;line-height:1.6!important}
+  .src-note{font-size:14px!important;color:var(--ink-faint)!important;font-family:'Inter'!important;font-style:italic;line-height:1.6!important}
+  .inline-img{margin:34px 0}
+  .inline-img .frame{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;position:relative}
+  .inline-img .frame img{width:100%;height:100%;object-fit:cover}
+  .inline-img .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:18px}
+  .inline-img .ph .fn{font-size:12.5px;font-weight:500;background:rgba(0,0,0,.25);padding:5px 12px;border-radius:7px}
+  .inline-img figcaption{font-size:13px;color:var(--ink-faint);text-align:center;margin-top:10px;font-style:italic}
+
+  .art-foot{max-width:var(--read);margin:36px auto 0;padding:26px 24px 0}
+  .tags{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:30px}
+  .tag{font-size:13px;color:var(--ink-soft);background:var(--tag-bg);padding:7px 14px;border-radius:99px}
+  .pub-badge{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--accent-ink);background:#eef6ee;border:1px solid #cfe6ce;padding:8px 14px;border-radius:8px;margin-bottom:26px}
+  .author-box{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;transition:width .1s}
+
+  @media(max-width:900px){
+    .wrap{grid-template-columns:1fr;gap:0}
+    .side-col{border-left:none;border-top:1px solid var(--line);padding:30px 0;margin-top:10px}
+    .side-sticky{position:static}
+    .nav-search{display:none}
+  }
+  @media(max-width:680px){
+    .post,.post.feat{grid-template-columns:1fr}
+    .pthumb,.post.feat .pthumb{width:100%;height:auto;aspect-ratio:16/9;order:-1;margin-bottom:4px}
+    .nav-right a:not(.nav-cta){display:none}
+    .masthead-inner{padding:44px 24px 40px}
+  }
+
+  .ph { display: none !important; }
+  
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand" onclick="goHome()">
+      <div class="mark">S</div>
+      <div class="name">Sanjaya Writings</div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Cari tulisan…" oninput="searchPosts(this.value)">
+      </div>
+      <a onclick="goHome();setTimeout(()=>scrollToId('tentang'),60)">Tentang</a>
+      <a class="nav-cta" onclick="goHome();setTimeout(()=>scrollToId('langganan'),60)">Berlangganan</a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <div class="masthead">
+    <div class="masthead-inner">
+      <h1>Sanjaya<br>Writings</h1>
+      <p>Tulisan tentang pajak, uang, dan ekonomi — diterjemahkan dari yang rumit menjadi bacaan yang jernih, jujur, dan berguna.</p>
+      <div class="meta">
+        <span class="pill" onclick="scrollToId('langganan')">Mulai membaca</span>
+        <span>Oleh <b>Sanjaya Ditha</b></span>
+        <span>·</span>
+        <span><b>6</b> tulisan</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="main-col">
+      <div class="tabs">
+        <button class="active" data-tab="semua" onclick="filterTab('semua',this)">Untukmu</button>
+        <button data-tab="Perpajakan Digital" onclick="filterTab('Perpajakan Digital',this)">Pajak</button>
+        <button data-tab="Keuangan Pribadi" onclick="filterTab('Keuangan Pribadi',this)">Keuangan Pribadi</button>
+        <button data-tab="Investasi" onclick="filterTab('Investasi',this)">Investasi</button>
+        <button data-tab="Ekonomi" onclick="filterTab('Ekonomi',this)">Ekonomi</button>
+        <button data-tab="Kebijakan Fiskal" onclick="filterTab('Kebijakan Fiskal',this)">Kebijakan Fiskal</button>
+      </div>
+      <div id="postList"></div>
+    </div>
+
+    <aside class="side-col">
+      <div class="side-sticky">
+        <div class="side-card">
+          <h3>Paling Banyak Dibaca</h3>
+          <div id="staffPicks"></div>
+        </div>
+        <div class="side-card">
+          <h3>Jelajahi Topik</h3>
+          <div class="topic-tags">
+            <span>Perpajakan</span><span>UMKM</span><span>Investasi</span>
+            <span>Inflasi</span><span>Dana Darurat</span><span>SPT</span><span>Ekonomi Digital</span>
+            <span>Pajak Karbon</span><span>Kebijakan Fiskal</span>
+          </div>
+        </div>
+        <div class="side-card" id="tentang">
+          <div class="side-about">
+            <div class="av-lg">S</div>
+            <h4>Sanjaya Ditha</h4>
+            <p>Penulis di balik Sanjaya Writings. Menulis pelan-pelan tentang bagaimana uang bergerak — di dompet rumah tangga maupun di kas negara.</p>
+            <button onclick="scrollToId('langganan')">Berlangganan</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div style="background:var(--bg-soft);border-top:1px solid var(--line)" id="langganan">
+    <div style="max-width:var(--read);margin:0 auto;padding:60px 24px;text-align:center">
+      <h2 style="font-family:'Source Serif 4',serif;font-weight:700;font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin-bottom:14px">Tentang Sanjaya Writings</h2>
+      <p style="font-family:'Source Serif 4',serif;font-size:19px;line-height:1.7;color:#2a2622;margin-bottom:18px">Saya <strong>Sanjaya Ditha</strong>, seorang yang penasaran tentang bagaimana uang bergerak. Sanjaya Writings lahir dari keyakinan sederhana: kebijakan fiskal dan keputusan keuangan tidak seharusnya menjadi bahasa rahasia yang hanya dipahami segelintir orang.</p>
+      <p style="font-family:'Source Serif 4',serif;font-size:19px;line-height:1.7;color:#2a2622;margin-bottom:34px">Di sini, setiap tulisan berusaha membumikan hal yang rumit — bukan untuk menggurui, melainkan untuk menemani pembaca berpikir.</p>
+      <div style="display:flex;gap:12px;max-width:420px;margin:0 auto;flex-wrap:wrap">
+        <input id="newsmail" type="email" placeholder="alamat@email.com" style="flex:1;min-width:200px;padding:13px 16px;border:1px solid var(--line);border-radius:99px;font-family:inherit;font-size:14.5px;outline:none">
+        <button onclick="subscribe()" style="padding:13px 26px;border:none;border-radius:99px;background:var(--accent);color:#fff;font-weight:600;font-size:14.5px;cursor:pointer;font-family:inherit">Berlangganan</button>
+      </div>
+      <div id="newsok" style="display:none;color:var(--accent-ink);font-size:14px;margin-top:16px">✓ Terima kasih! Konfirmasi telah dikirim ke email Anda.</div>
+    </div>
+  </div>
+</main>
+
+<div class="article-view" id="articleView">
+  <div class="art-inner">
+    <span class="back-btn" onclick="goHome()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Semua tulisan
+    </span>
+    <div class="art-cat" id="artCat"></div>
+    <h1 class="art-title" id="artTitle"></h1>
+    <p class="art-dek" id="artDek"></p>
+    <div class="art-byline">
+      <div class="avatar">S</div>
+      <div class="byline-txt"><b>Sanjaya Ditha</b><span id="artMeta"></span></div>
+    </div>
+  </div>
+  <div class="art-inner"><figure class="art-hero-img" id="artHeroImg"></figure></div>
+  <article class="art-body" id="artBody"></article>
+  <div class="art-foot">
+    <div class="tags" id="artTags"></div>
+    <div class="author-box">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="avatar" style="width:52px;height:52px;font-size:22px">S</div>
+        <div><b style="font-family:'Source Serif 4',serif;font-size:17px">Sanjaya Ditha</b><div style="color:var(--ink-faint);font-size:13.5px">Penulis Sanjaya Writings · Catatan pajak & keuangan</div></div>
+      </div>
+      <span class="back-btn" style="margin:0" onclick="goHome();setTimeout(()=>scrollToId('postList'),60)">Tulisan lainnya →</span>
+    </div>
+  </div>
+  <div style="height:60px"></div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-links">
+      <a onclick="goHome()">Beranda</a>
+      <a onclick="goHome();setTimeout(()=>scrollToId('tentang'),60)">Tentang</a>
+      <a onclick="goHome();setTimeout(()=>scrollToId('langganan'),60)">Berlangganan</a>
+      <a onclick="goHome();setTimeout(()=>scrollToId('postList'),60)">Arsip</a>
+    </div>
+    <div class="foot-copy">© 2026 Sanjaya Writings · Ditulis oleh Sanjaya Ditha</div>
+  </div>
+</footer>
+
+<script>
+const ARTICLES = {
+  a1:{cat:"Perpajakan Digital", grad:"g-tax", img:"https://images.unsplash.com/photo-1460925895917-adf4e565db6d?w=800&q=80",
+    imgCaption:"Pasar digital kini menjadi titik pemungutan pajak yang baru.",
+    title:"Lautan Transaksi yang Tak Terlihat: Saat Marketplace Menjadi Juru Pajak",
+    dek:"Celah fiskal terbesar Indonesia tidak bersembunyi di perusahaan raksasa, melainkan di jutaan transaksi kecil yang selama ini luput dari mata negara.",
+    meta:"3 Juni 2026", read:"10 menit baca", date:"3 Jun 2026",
+    tags:["PMK 37/2025","Pajak Digital","UMKM","Perluasan Basis Pajak","Ketahanan Fiskal"],
+    inlineImg:"transaksi-ecommerce.jpg", inlineCaption:"Nilai transaksi e-commerce nasional menembus Rp487 triliun pada 2024.",
+    body:`
+    <div class="pub-badge">✓ Dipublikasikan di Sanjaya Writings · 3 Juni 2026</div>
+    <p>Lebih dari satu juta pedagang daring berjualan di pasar digital Indonesia setiap hari. Tetapi sampai pertengahan 2025, sebagian besar dari mereka tidak pernah tersentuh sistem pajak penghasilan — bukan karena enggan, melainkan karena negara belum pernah benar-benar menjangkau mereka. Di sinilah celah fiskal terbesar Indonesia bersembunyi: bukan di perusahaan besar yang sudah diawasi ketat, melainkan di lautan transaksi kecil yang tak terlihat.</p>
+    <p>Skalanya tidak main-main. Menurut data Bank Indonesia, nilai transaksi <em>e-commerce</em> nasional menembus Rp487 triliun pada 2024, naik sekitar 7,3 persen dari tahun sebelumnya. Jumlah penggunanya pun melonjak dari 38 juta pada 2020 menjadi sekitar 65 juta pada 2024, menurut catatan Kementerian Perdagangan. Sebuah pasar sebesar itu tumbuh nyaris sepenuhnya di ruang digital — cepat, cair, dan sulit dilacak dengan instrumen pajak konvensional.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">Rp487 T</div><div class="l">Nilai transaksi e-commerce 2024 (Bank Indonesia)</div></div>
+      <div class="item"><div class="n">65 juta</div><div class="l">Pengguna e-commerce 2024 (Kemendag)</div></div>
+      <div class="item"><div class="n">7,3%</div><div class="l">Pertumbuhan transaksi tahunan</div></div>
+    </div>
+    <h2>Paradoks Sebuah Ekonomi yang Tumbuh di Bayang-bayang</h2>
+    <p>Ekonomi digital menghadirkan paradoks fiskal yang khas. Di satu sisi, ia menciptakan kemakmuran dan lapangan kerja bagi jutaan pelaku usaha mikro. Di sisi lain, sifatnya yang serba digital membuat sebagian besar nilai ekonominya mengalir tanpa jejak pajak yang jelas. Toko fisik di pinggir jalan membayar pajak dengan tertib, sementara penjual daring dengan omzet serupa kerap luput sekadar karena sistem belum mampu menjangkaunya. Ketimpangan ini bukan soal niat, melainkan soal arsitektur.</p>
+    <p>Persoalan ini bukan milik Indonesia seorang. Di tengah dinamika global, organisasi seperti OECD selama bertahun-tahun mendorong agar negara-negara memperkuat pemajakan ekonomi digital melalui kerangka <em>Base Erosion and Profit Shifting</em> (BEPS). Intinya sederhana: nilai ekonomi yang nyata harus bisa dipajaki di tempat ia benar-benar dihasilkan. Bagi Indonesia, tantangannya lebih membumi — bukan soal raksasa teknologi lintas negara, melainkan soal jutaan penjual lokal yang belum terhubung dengan sistem.</p>
+    [[INLINE_IMG]]
+    <h2>Mekanisme Baru: Menjadikan Pasar Sebagai Pemungut</h2>
+    <p>Jawaban pemerintah datang lewat Peraturan Menteri Keuangan Nomor 37 Tahun 2025. Aturan ini, yang diundangkan bertepatan dengan Hari Pajak 14 Juli 2025, menunjuk penyelenggara pasar digital — <em>marketplace</em> seperti Tokopedia, Shopee, hingga Lazada — sebagai pihak yang memungut Pajak Penghasilan (PPh) Pasal 22 atas penghasilan pedagang dalam negeri. Tarifnya 0,5 persen dari peredaran bruto, tidak termasuk PPN dan pajak barang mewah.</p>
+    <p>Logikanya elegan. Alih-alih mengejar jutaan penjual satu per satu — tugas yang nyaris mustahil — negara cukup menugaskan platform yang sudah memegang seluruh data transaksi untuk memungut pajak secara otomatis di titik pembayaran. Pasar berubah menjadi <em>juru pajak</em>. Yang patut digarisbawahi: ini bukan pajak baru. Tarif 0,5 persen itu sama persis dengan PPh final UMKM yang selama ini berlaku. Yang berubah hanyalah mekanismenya — dari setor sendiri menjadi dipungut otomatis.</p>
+    <blockquote>Negara tidak perlu mengejar jutaan penjual satu per satu. Cukup menugaskan pasar yang memegang seluruh data untuk memungut di titik pembayaran.</blockquote>
+    <p>Aturan ini juga menjaga keadilan bagi yang terkecil. Pedagang orang pribadi dengan omzet sampai Rp500 juta per tahun dikecualikan dari pemungutan, asalkan menyampaikan surat pernyataan kepada platform. Dengan begitu, beban tidak jatuh pada pelaku mikro yang baru merintis, melainkan terfokus pada mereka yang usahanya sudah cukup mapan.</p>
+    <h2>Dampak yang Diharapkan — dan Risiko yang Diakui</h2>
+    <p>Secara konsep, mekanisme ini berpotensi menarik ke dalam sistem ratusan ribu pelaku usaha yang sebelumnya tak terlihat, tanpa menaikkan tarif sepeser pun. Inilah wujud nyata <strong>perluasan basis pajak</strong>: menambah penerimaan negara dengan memperluas siapa yang membayar, bukan dengan memperberat beban yang sudah ada. Dalam jangka panjang, basis yang lebih lebar adalah fondasi <strong>ketahanan fiskal</strong> — kemampuan negara membiayai dirinya sendiri tanpa terlalu bergantung pada utang.</p>
+    <div class="callout"><p><strong>Perlu dicatat:</strong> Per awal 2026, pemerintah menunda pengaktifan pemungutan ini. Menteri Keuangan menyatakan kebijakan baru akan dijalankan setelah pertumbuhan ekonomi nasional dinilai cukup stabil. Aturannya sudah ada; eksekusinya menunggu momentum yang tepat.</p></div>
+    <p>Tentu, kebijakan ini bukan tanpa risiko. Ada beban administrasi baru bagi platform, potensi kebingungan di kalangan pedagang kecil soal surat pernyataan, dan kekhawatiran sebagian pelaku usaha bahwa pungutan akan menggerus margin tipis mereka. Risiko-risiko ini nyata dan layak diperhatikan. Namun sebagiannya dapat dimitigasi lewat sosialisasi yang sabar, antarmuka yang sederhana, dan masa transisi yang memberi waktu pedagang menyesuaikan diri — yang sebagiannya memang sudah diatur dalam beleid ini.</p>
+    <h2>Lebih dari Sekadar Angka di Kas Negara</h2>
+    <p>Pada akhirnya, menjangkau lautan transaksi yang tak terlihat bukan semata urusan menambah penerimaan. Ia menyangkut keadilan: bahwa pedagang daring dan pedagang fisik yang sama-sama mencari nafkah seharusnya berdiri di garis yang setara di hadapan negara. Ia juga menyangkut masa depan — sebab tax ratio yang sehat adalah modal sebuah bangsa untuk membiayai sekolah, jalan, dan rumah sakit tanpa harus terus berutang.</p>
+    <p>Memajaki ekonomi digital memang pekerjaan yang rumit dan tak akan selesai dalam semalam. Tetapi arahnya jelas dan patut didukung. Karena pada hakikatnya, pajak bukan sekadar potongan dari penghasilan, melainkan iuran bersama untuk negeri yang kita tinggali — termasuk negeri digital yang kini menjadi tempat jutaan orang mencari penghidupan.</p>
+    <p class="src-note">Sumber data: Bank Indonesia (transaksi e-commerce 2024); Kementerian Perdagangan (jumlah pengguna); Peraturan Menteri Keuangan Nomor 37 Tahun 2025; Direktorat Jenderal Pajak (pajak.go.id).</p>`},
+
+  a2:{cat:"Keuangan Pribadi", grad:"g-pf", img:"https://images.unsplash.com/photo-1526304640581-d334cdbbf45b?w=800&q=80",
+    imgCaption:"Dana darurat: lapisan pertahanan pertama sebelum berinvestasi.",
+    title:"Dana Darurat: Bantal yang Sering Dilupakan",
+    dek:"Sebelum bicara saham, reksa dana, atau emas, ada satu lapis pertahanan yang harus lebih dulu berdiri kokoh.",
+    meta:"28 Mei 2026", read:"7 menit baca", date:"28 Mei 2026",
+    tags:["Dana Darurat","Keuangan Pribadi","Menabung","Manajemen Risiko"],
+    body:`
+    <p>Bayangkan sebuah skenario yang terlalu umum: motor mogok di tengah perjalanan, atasan mengumumkan perampingan, atau anggota keluarga jatuh sakit mendadak. Dalam sekejap, pengeluaran melonjak sementara pemasukan justru terancam. Pada momen seperti inilah dana darurat membuktikan dirinya — bukan sebagai kemewahan, melainkan sebagai bantal yang menahan jatuh.</p>
+    <p>Sayangnya, dana darurat sering menjadi pos yang paling diabaikan. Banyak orang bergegas masuk ke investasi yang menjanjikan imbal hasil tinggi, melompati lapisan paling dasar dari ketahanan keuangan. Padahal tanpa bantal ini, satu guncangan kecil bisa memaksa kita menjual investasi di saat rugi, atau lebih buruk, terjerat utang berbunga tinggi.</p>
+    <h2>Apa Sebenarnya Dana Darurat Itu?</h2>
+    <p>Dana darurat adalah sejumlah uang yang sengaja disisihkan dan disimpan di tempat yang mudah dicairkan, khusus untuk menghadapi kejadian tak terduga. Kuncinya ada pada dua kata: <em>likuid</em> dan <em>terpisah</em>. Likuid berarti bisa diambil kapan saja tanpa penalti — itulah mengapa rekening tabungan biasa lebih cocok daripada deposito atau saham. Terpisah berarti tidak bercampur dengan rekening belanja harian, agar tidak tergoda terpakai untuk hal yang bukan darurat.</p>
+    <blockquote>Dana darurat bukan untuk membuat Anda kaya. Ia ada untuk memastikan Anda tidak jatuh miskin saat keadaan memburuk.</blockquote>
+    <h2>Berapa Idealnya?</h2>
+    <p>Aturan umum yang banyak dianut perencana keuangan adalah menyimpan setara <strong>3 sampai 6 bulan pengeluaran</strong> bulanan. Angka ini bukan patokan kaku, melainkan rentang yang menyesuaikan dengan situasi masing-masing orang:</p>
+    <ul>
+      <li><strong>3 bulan</strong> umumnya cukup bagi mereka yang berpenghasilan stabil, masih lajang, dan punya tanggungan minim.</li>
+      <li><strong>6 bulan atau lebih</strong> lebih bijak bagi yang berpenghasilan tidak tetap, memiliki tanggungan keluarga, atau bekerja di sektor yang rentan gejolak.</li>
+    </ul>
+    <p>Cara menghitungnya sederhana. Jumlahkan pengeluaran wajib bulanan Anda — makan, sewa atau cicilan rumah, listrik, transportasi, dan tagihan rutin lainnya. Kalikan dengan angka bulan yang Anda targetkan. Hasilnya adalah ukuran bantal yang ingin Anda bangun.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">3–6×</div><div class="l">Pengeluaran bulanan sebagai target ideal</div></div>
+      <div class="item"><div class="n">Likuid</div><div class="l">Disimpan di instrumen yang mudah dicairkan</div></div>
+      <div class="item"><div class="n">Terpisah</div><div class="l">Bukan di rekening belanja harian</div></div>
+    </div>
+    <h2>Membangunnya Tanpa Merasa Tercekik</h2>
+    <p>Angka 3 sampai 6 bulan pengeluaran bisa terasa menakutkan jika dilihat sekaligus. Maka pendekatan yang masuk akal adalah membangunnya bertahap. Mulailah dengan target kecil yang terasa mungkin — misalnya satu bulan pengeluaran lebih dulu. Sisihkan persentase tetap dari setiap pemasukan, sekecil apa pun, dan otomatiskan prosesnya agar tidak bergantung pada disiplin harian.</p>
+    <p>Yang penting bukan kecepatan, melainkan konsistensi. Dana darurat yang dibangun pelan-pelan selama setahun jauh lebih berharga daripada niat besar yang tak pernah dimulai. Dan begitu bantal itu terbentuk, Anda akan merasakan ketenangan yang sulit dinilai dengan uang: kebebasan untuk menghadapi kejutan hidup tanpa panik.</p>
+    <h2>Penutup</h2>
+    <p>Dalam dunia keuangan yang sering memuja imbal hasil tinggi, dana darurat memang terdengar membosankan. Ia tidak tumbuh berlipat, tidak menarik dipamerkan, dan tidak membuat siapa pun terlihat pintar. Tetapi justru kesederhanaannya itulah kekuatannya. Sebelum mengejar pertumbuhan, pastikan dulu Anda punya pijakan yang tak mudah goyah. Karena fondasi yang kokoh selalu lebih dulu dari menara yang tinggi.</p>`},
+
+  a3:{cat:"Investasi", grad:"g-inv", img:"https://images.unsplash.com/photo-1543269865-cbdf26861551?w=800&q=80",
+    imgCaption:"Waktu adalah bahan bakar utama bunga majemuk.",
+    title:"Bunga Majemuk: Keajaiban yang Butuh Kesabaran",
+    dek:"Rahasia di balik kekayaan yang tumbuh bukanlah keberuntungan, melainkan kombinasi sederhana antara waktu dan konsistensi.",
+    meta:"20 Mei 2026", read:"8 menit baca", date:"20 Mei 2026",
+    tags:["Bunga Majemuk","Investasi","Compound Interest","Perencanaan Jangka Panjang"],
+    body:`
+    <p>Ada satu konsep dalam keuangan yang begitu kuat sampai sering disebut sebagai keajaiban — meski sebenarnya tidak ada keajaiban sama sekali di dalamnya, hanya matematika dan waktu. Konsep itu adalah bunga majemuk, atau <em>compound interest</em>. Ia bekerja diam-diam, nyaris tak terasa di awal, lalu meledak dahsyat di kemudian hari bagi mereka yang cukup sabar menunggunya.</p>
+    <h2>Bunga di Atas Bunga</h2>
+    <p>Bunga sederhana hanya tumbuh dari pokok awal. Tetapi bunga majemuk tumbuh dari pokok <em>ditambah</em> bunga yang sudah terkumpul sebelumnya. Artinya, uang Anda menghasilkan uang, lalu uang hasil itu ikut menghasilkan uang lagi. Inilah bola salju yang menggelinding: makin lama makin besar, dan makin cepat membesar.</p>
+    <p>Ilustrasinya begini. Misalkan Anda menanam Rp10 juta dengan imbal hasil 8 persen per tahun. Di tahun pertama, Anda memperoleh Rp800 ribu. Tapi di tahun kedua, 8 persen itu dihitung dari Rp10,8 juta — bukan lagi Rp10 juta. Selisihnya tampak kecil di awal. Namun seiring waktu, selisih kecil itu menumpuk menjadi jurang yang lebar.</p>
+    <blockquote>Bunga majemuk menghargai mereka yang memulai lebih awal jauh lebih murah hati daripada mereka yang menabung lebih banyak tapi terlambat.</blockquote>
+    <h2>Mengapa Waktu Adalah Bahan Bakar Utamanya</h2>
+    <p>Faktor terpenting dalam bunga majemuk bukanlah besarnya modal, melainkan lamanya waktu. Inilah sebabnya memulai lebih awal — meski dengan jumlah kecil — sering kali mengalahkan memulai terlambat dengan jumlah besar. Sepuluh tahun pertama mungkin terasa lambat dan mengecewakan. Tetapi dekade-dekade berikutnya adalah tempat keajaiban sesungguhnya terjadi.</p>
+    <p>Sebagai gambaran kasar, ada panduan populer bernama <strong>Aturan 72</strong>: bagi angka 72 dengan tingkat imbal hasil tahunan, dan Anda mendapat perkiraan berapa tahun yang dibutuhkan agar uang Anda berlipat dua. Pada imbal hasil 8 persen, uang Anda kira-kira berlipat ganda setiap 9 tahun. Pada 12 persen, hanya butuh sekitar 6 tahun. Aturan ini bukan rumus presisi, tetapi cukup untuk merasakan betapa kuatnya pertumbuhan eksponensial.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">Aturan 72</div><div class="l">72 ÷ imbal hasil = tahun untuk berlipat dua</div></div>
+      <div class="item"><div class="n">Waktu</div><div class="l">Variabel paling menentukan, melebihi besar modal</div></div>
+      <div class="item"><div class="n">Konsisten</div><div class="l">Setoran rutin memperbesar efek bola salju</div></div>
+    </div>
+    <h2>Sisi Lain: Bunga Majemuk Bisa Melawan Anda</h2>
+    <p>Yang sering dilupakan, bunga majemuk adalah pedang bermata dua. Mekanisme yang sama yang membuat investasi tumbuh subur juga membuat utang membengkak ganas. Tagihan kartu kredit yang dibiarkan menumpuk, atau pinjaman daring berbunga tinggi, memanfaatkan bunga majemuk untuk merugikan Anda. Bunga menumpuk di atas bunga, dan dalam sekejap pokok kecil bisa berubah menjadi beban yang mencekik.</p>
+    <p>Maka pelajaran pertamanya bahkan sebelum berinvestasi: lunasi dulu utang berbunga tinggi. Membayar utang dengan bunga 24 persen setahun, pada hakikatnya, sama dengan memperoleh imbal hasil 24 persen yang bebas risiko. Tak banyak investasi yang bisa menandinginya.</p>
+    <h2>Kesabaran sebagai Strategi</h2>
+    <p>Bunga majemuk tidak menjanjikan kekayaan instan, dan justru di situlah kejujurannya. Ia menuntut dua hal yang sering kekurangan stoknya di zaman serba cepat ini: kesabaran dan konsistensi. Mulailah sedini mungkin, setor secara rutin, dan biarkan waktu bekerja. Anda mungkin tidak melihat hasilnya bulan depan atau bahkan tahun depan. Tetapi seperti pohon yang ditanam hari ini, naungannya akan terasa justru oleh diri Anda di masa depan.</p>
+    <p class="src-note">Catatan: tulisan ini bersifat edukatif dan bukan merupakan saran investasi. Setiap keputusan finansial sebaiknya disesuaikan dengan kondisi pribadi.</p>`},
+
+  a4:{cat:"Ekonomi", grad:"g-eco", img:"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+    imgCaption:"Inflasi menggerus daya beli uang secara perlahan dan diam-diam.",
+    title:"Memahami Inflasi: Mengapa Uang Anda Menyusut Diam-diam",
+    dek:"Secangkir kopi yang dulu seharga lima ribu kini jauh lebih mahal. Di balik kenaikan itu, ada mekanisme yang patut kita pahami.",
+    meta:"12 Mei 2026", read:"8 menit baca", date:"12 Mei 2026",
+    tags:["Inflasi","Ekonomi Makro","Daya Beli","Bank Indonesia"],
+    body:`
+    <p>Cobalah tanyakan kepada orang tua atau kakek-nenek Anda berapa harga semangkuk bakso saat mereka muda. Angka yang mereka sebut hampir pasti membuat Anda tersenyum heran. Fenomena ini punya nama: inflasi. Ia adalah gaya tak kasat mata yang perlahan menggerus nilai uang, membuat jumlah rupiah yang sama membeli barang yang makin sedikit dari tahun ke tahun.</p>
+    <h2>Apa Itu Inflasi, Sebenarnya?</h2>
+    <p>Secara sederhana, inflasi adalah kenaikan harga barang dan jasa secara umum dan terus-menerus dalam suatu periode. Perhatikan dua kata kunci: <em>umum</em> dan <em>terus-menerus</em>. Kenaikan harga cabai musiman karena gagal panen bukanlah inflasi dalam arti sesungguhnya. Inflasi berbicara tentang tren menyeluruh — ketika hampir semua hal, dari beras hingga ongkos potong rambut, perlahan menjadi lebih mahal.</p>
+    <p>Di Indonesia, laju inflasi diukur dan dipantau secara resmi melalui Indeks Harga Konsumen (IHK) oleh Badan Pusat Statistik, sementara Bank Indonesia bertugas menjaganya tetap stabil dalam rentang sasaran tertentu. Inflasi yang terkendali pada tingkat rendah sebenarnya dianggap sehat bagi perekonomian. Yang berbahaya adalah ketika ia melonjak liar tak terkendali, atau sebaliknya, ketika harga justru terus turun (deflasi) yang bisa menandakan ekonomi lesu.</p>
+    <blockquote>Inflasi tidak mencuri uang dari dompet Anda. Ia mencuri daya beli dari uang yang sudah ada di sana.</blockquote>
+    <h2>Mengapa Harga Bisa Naik?</h2>
+    <p>Para ekonom umumnya mengelompokkan penyebab inflasi ke dalam beberapa jenis utama:</p>
+    <ul>
+      <li><strong>Tarikan permintaan</strong> (<em>demand-pull</em>): terjadi saat permintaan masyarakat melebihi kemampuan produksi. Terlalu banyak uang mengejar terlalu sedikit barang, sehingga harga terdorong naik.</li>
+      <li><strong>Dorongan biaya</strong> (<em>cost-push</em>): muncul ketika biaya produksi meningkat — misalnya harga bahan baku atau energi naik — dan produsen meneruskan beban itu ke harga jual.</li>
+      <li><strong>Ekspektasi</strong>: bila masyarakat dan pengusaha yakin harga akan terus naik, mereka menaikkan harga dan menuntut upah lebih tinggi lebih awal, sehingga ekspektasi itu mewujudkan dirinya sendiri.</li>
+    </ul>
+    <h2>Dampaknya pada Hidup Sehari-hari</h2>
+    <p>Inflasi memukul paling keras mereka yang memegang uang tunai atau menyimpan seluruh kekayaannya di instrumen berimbal hasil rendah. Jika tabungan Anda tumbuh 2 persen setahun sementara inflasi 4 persen, maka secara riil, daya beli Anda justru menyusut 2 persen. Uang Anda bertambah di atas kertas, tetapi melemah dalam kenyataan.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">IHK</div><div class="l">Indeks Harga Konsumen, ukuran resmi inflasi (BPS)</div></div>
+      <div class="item"><div class="n">Riil</div><div class="l">Imbal hasil setelah dikurangi inflasi</div></div>
+      <div class="item"><div class="n">Daya beli</div><div class="l">Yang sesungguhnya tergerus, bukan jumlah uang</div></div>
+    </div>
+    <h2>Bagaimana Melindungi Diri?</h2>
+    <p>Kabar baiknya, inflasi bukan musuh yang tak terkalahkan. Kuncinya adalah memastikan uang Anda tumbuh setidaknya secepat — idealnya lebih cepat — dari laju inflasi. Inilah alasan mendasar mengapa sekadar menabung di rekening biasa sering tidak cukup untuk menjaga kekayaan dalam jangka panjang.</p>
+    <p>Menempatkan sebagian dana pada instrumen yang secara historis mampu mengungguli inflasi — seperti instrumen berbasis pertumbuhan ekonomi — menjadi salah satu cara menjaga nilai. Tentu setiap instrumen punya profil risikonya sendiri, dan keputusan harus disesuaikan dengan tujuan serta kenyamanan masing-masing. Yang pasti, memahami inflasi adalah langkah pertama untuk berhenti menjadi korban pasifnya.</p>
+    <h2>Penutup</h2>
+    <p>Inflasi adalah bagian wajar dari ekonomi modern yang tak bisa kita hindari sepenuhnya. Tetapi kita bisa memilih untuk memahaminya, bukan mengabaikannya. Sebab uang yang dibiarkan diam, pelan-pelan akan menyusut tanpa suara. Dan satu-satunya cara melawan kerugian yang sunyi itu adalah dengan kesadaran yang nyaring.</p>
+    <p class="src-note">Catatan: tulisan ini bersifat edukatif dan bukan merupakan saran investasi.</p>`},
+
+  a5:{cat:"Pajak Pribadi", grad:"g-ptax", img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    imgCaption:"Melapor SPT bagi karyawan jauh lebih sederhana dari reputasinya.",
+    title:"SPT Tahunan Tanpa Drama: Panduan untuk Karyawan",
+    dek:"Setiap Maret, lapor pajak terasa seperti ujian mendadak. Padahal bagi sebagian besar karyawan, prosesnya jauh lebih ramah dari yang dibayangkan.",
+    meta:"4 Mei 2026", read:"6 menit baca", date:"4 Mei 2026",
+    tags:["SPT Tahunan","Pajak Penghasilan","Karyawan","e-Filing"],
+    body:`
+    <p>Bagi banyak karyawan, kata "SPT" memicu rasa cemas yang khas. Bayangan formulir berisi angka rumit, istilah asing, dan ketakutan salah isi membuat sebagian orang menunda-nunda hingga menit terakhir bulan Maret. Padahal kenyataannya, bagi mayoritas pekerja bergaji, melaporkan Surat Pemberitahuan (SPT) Tahunan adalah proses yang jauh lebih sederhana dari reputasinya.</p>
+    <h2>Apa Itu SPT dan Mengapa Wajib?</h2>
+    <p>SPT Tahunan pada dasarnya adalah laporan yang Anda sampaikan kepada negara mengenai penghasilan, harta, dan kewajiban pajak Anda selama satu tahun. Bagi karyawan, sebagian besar pekerjaan sebenarnya sudah dilakukan oleh pemberi kerja, yang setiap bulan memotong pajak penghasilan (PPh Pasal 21) dari gaji Anda dan menyetorkannya ke negara.</p>
+    <p>Artinya, melapor SPT bagi karyawan umumnya bukan soal membayar lagi, melainkan soal <em>mencocokkan</em> — memastikan bahwa pajak yang sudah dipotong sepanjang tahun memang sudah sesuai. Bukti potong dari pemberi kerja (dikenal sebagai formulir 1721-A1) adalah dokumen kunci yang berisi hampir semua angka yang Anda butuhkan.</p>
+    <blockquote>Bagi kebanyakan karyawan, melapor SPT bukan membayar pajak baru, melainkan memastikan yang sudah dipotong memang sudah pas.</blockquote>
+    <h2>Langkah-langkah yang Sebenarnya Sederhana</h2>
+    <p>Proses pelaporan kini hampir sepenuhnya daring melalui layanan resmi Direktorat Jenderal Pajak. Secara garis besar, alurnya seperti ini:</p>
+    <ul>
+      <li><strong>Siapkan bukti potong (1721-A1)</strong> dari pemberi kerja. Ini sumber utama data penghasilan dan pajak yang telah dipotong.</li>
+      <li><strong>Siapkan data harta dan utang</strong> per akhir tahun — saldo rekening, kendaraan, properti, dan kewajiban jika ada. Cukup nilai perolehan, bukan nilai pasar terkini.</li>
+      <li><strong>Masuk ke layanan elektronik DJP</strong> menggunakan NPWP dan kata sandi Anda.</li>
+      <li><strong>Pilih formulir yang sesuai.</strong> Karyawan dengan penghasilan tertentu umumnya menggunakan formulir yang lebih ringkas.</li>
+      <li><strong>Isi, cocokkan, dan kirim.</strong> Setelah berhasil, Anda akan menerima tanda terima elektronik sebagai bukti.</li>
+    </ul>
+    <div class="pullstat">
+      <div class="item"><div class="n">1721-A1</div><div class="l">Bukti potong dari pemberi kerja, dokumen kunci</div></div>
+      <div class="item"><div class="n">31 Maret</div><div class="l">Batas akhir lapor SPT orang pribadi</div></div>
+      <div class="item"><div class="n">Daring</div><div class="l">Seluruh proses kini bisa dari rumah</div></div>
+    </div>
+    <h2>Kesalahpahaman yang Sering Terjadi</h2>
+    <p>Banyak yang mengira melapor SPT otomatis berarti harus membayar lagi. Untuk sebagian besar karyawan yang pajaknya sudah dipotong penuh oleh perusahaan, status SPT-nya justru "nihil" — tidak kurang bayar. Ada pula yang takut salah mengisi harta lalu memilih tidak melaporkannya sama sekali. Padahal melaporkan harta apa adanya jauh lebih aman daripada menyembunyikannya.</p>
+    <p>Kesalahpahaman lain: menunda karena merasa rumit. Ironisnya, semakin ditunda, semakin menumpuk kecemasannya. Padahal jika dokumen sudah siap, pengisian sebenarnya bisa selesai dalam hitungan belasan menit.</p>
+    <h2>Penutup</h2>
+    <p>Melaporkan SPT bukanlah ritual menakutkan, melainkan bentuk paling sederhana dari partisipasi kita sebagai warga negara. Ia adalah momen tahunan untuk merapikan catatan dan memastikan kontribusi kita pada negeri sudah tercatat dengan benar. Dengan dokumen yang siap dan sedikit kesabaran, drama tahunan itu sebenarnya bisa berubah menjadi rutinitas yang tenang — bahkan memuaskan.</p>
+    <p class="src-note">Catatan: prosedur dan formulir dapat berubah sesuai ketentuan terbaru. Selalu rujuk informasi resmi di pajak.go.id atau hubungi kantor pajak untuk kasus spesifik Anda.</p>`},
+
+
+  a7:{cat:"Kebijakan Fiskal", grad:"g-kfis", img:"https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80",
+    imgCaption:"Penerimaan pajak karbon yang dikembalikan sebagai dividen rakyat — bukan beban, melainkan keadilan.",
+    title:"Pajak Karbon yang Mengembalikan: Mengubah Beban Iklim Menjadi Dividen Rakyat",
+    dek:"Indonesia punya UU pajak karbon sejak 2021, tapi pungutannya nyaris belum berjalan. Ada cara agar pajak ini lahir bukan sebagai beban, melainkan sebagai dividen yang kembali ke kantong rakyat kecil.",
+    meta:"19 Juni 2026", read:"9 menit baca", date:"19 Jun 2026",
+    tags:["Pajak Karbon","Kebijakan Fiskal","Revenue Recycling","Keadilan Sosial","Transisi Energi","UU HPP","CBAM"],
+    inlineImg:"bursa-karbon-indonesia.jpg", inlineCaption:"Bursa Karbon Indonesia (IDX Carbon) telah beroperasi sejak 2023, menyediakan infrastruktur perdagangan emisi yang siap mendukung ekosistem pajak karbon.",
+    body:`
+    <div class="pub-badge">&#10003; Dipublikasikan di Sanjaya Writings &middot; 19 Juni 2026</div>
+    <p>Indonesia telah memiliki undang-undang pajak karbon sejak 2021, tetapi hingga kini pungutannya nyaris belum berjalan. Sementara dunia bergegas memberi harga pada emisi, Indonesia justru menunda penerapannya berkali-kali karena satu ketakutan yang masuk akal: "jangan-jangan pajak karbon akan menjadi beban baru bagi rakyat yang ekonominya sudah berat." Ketakutan itu wajar, tetapi tidak harus menjadi alasan untuk diam. Sebab ada cara agar pajak ini lahir bukan sebagai beban, melainkan sebagai dividen yang justru kembali ke kantong rakyat kecil.</p>
+    <h2>Tekanan Fiskal dan Instrumen yang Sudah Ada di Tangan</h2>
+    <p>Persoalan fiskal Indonesia menuntut sumber penerimaan baru yang kredibel dan berkelanjutan. Rasio pajak (<em>tax ratio</em>) 2025 turun ke 9,31 persen dari Produk Domestik Bruto (PDB), dan penerimaan pajak hanya Rp1.917,6 triliun atau 87,6 persen dari target, menurut Kementerian Keuangan. Tekanan ini bahkan berisiko mendorong defisit anggaran mendekati batas aman tiga persen dari PDB.</p>
+    <p>Di sisi lain, Undang-Undang Harmonisasi Peraturan Perpajakan (UU HPP) telah memberi dasar hukum kuat bagi pajak karbon dengan tarif terendah Rp30 per kilogram setara karbon dioksida. Peraturan Pemerintah Nomor 40 Tahun 2025 semakin memperkuat arah kebijakan ini. Artinya, instrumen perluasan basis pajak sudah tersedia di tangan, tetapi yang masih kurang hanyalah desain yang membuatnya adil sekaligus diterima publik.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">9,31%</div><div class="l">Tax ratio Indonesia 2025 terhadap PDB (Kemenkeu)</div></div>
+      <div class="item"><div class="n">Rp1.917,6 T</div><div class="l">Penerimaan pajak 2025 &mdash; 87,6% dari target</div></div>
+      <div class="item"><div class="n">Rp30/kg</div><div class="l">Tarif terendah pajak karbon dalam UU HPP</div></div>
+    </div>
+    <h2>Pelajaran Global: Dari Singapura hingga Ancaman CBAM Eropa</h2>
+    <p>Dunia menyediakan banyak pelajaran berharga. Singapura menerapkan pajak karbon sejak 2019 dengan tarif yang dinaikkan bertahap dari S$5 menjadi S$25 per ton pada 2024, dan akan menjadi S$45 pada 2026. Hasilnya, negeri jiran itu menghimpun penerimaan sekitar S$215 juta pada 2023 sekaligus memberi sinyal kuat bagi industri untuk berinvestasi pada teknologi bersih.</p>
+    <p>Tekanan global juga datang dari <em>Carbon Border Adjustment Mechanism</em> (CBAM) Uni Eropa, yang akan mengenakan biaya karbon pada produk impor tertentu. Logikanya menohok: jika Indonesia tidak memungut karbonnya sendiri, justru negara lain yang akan memungutnya dari produk ekspor kita. Memungut karbon di dalam negeri berarti menjaga penerimaan itu tetap berada di tangan Indonesia.</p>
+    [[INLINE_IMG]]
+    <h2>Revenue Recycling: Kunci yang Mengubah Segalanya</h2>
+    <p>Di sinilah gagasan <em>revenue recycling</em> &mdash; atau daur ulang penerimaan &mdash; menjadi kunci. Konsepnya sederhana dan kuat. Penerimaan dari pajak karbon tidak masuk ke kas umum begitu saja, melainkan sebagian besar dikembalikan langsung kepada rumah tangga berpenghasilan rendah dalam bentuk transfer tunai.</p>
+    <blockquote>Kanada membuktikan bahwa sebagian besar keluarga justru menerima lebih banyak dari dividen karbon daripada yang mereka bayarkan lewat kenaikan harga energi.</blockquote>
+    <p>Indonesia dapat mengadaptasi model ini dengan menyalurkan dividen karbon melalui ekosistem bantuan sosial dan dompet digital yang sudah mapan &mdash; langsung ke rekening keluarga penerima manfaat tanpa perantara yang berbelit.</p>
+    <h2>Menjawab Keberatan Utama: Daya Beli yang Terlindungi</h2>
+    <p>Mekanisme ini menjawab langsung keberatan utama terhadap pajak karbon. Ketika harga bahan bakar fosil naik akibat pungutan, keluarga miskin memang yang paling rentan terdampak. Namun jika dividen karbon yang mereka terima lebih besar daripada kenaikan biaya hidup, daya beli mereka justru terlindungi, sementara insentif untuk beralih ke energi yang lebih bersih tetap bekerja bagi semua lapisan masyarakat. Dengan cara ini, pajak karbon berubah wajah &mdash; dari instrumen yang seolah menghukum menjadi instrumen yang berkeadilan dan berpihak.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">Dividen</div><div class="l">Transfer tunai langsung ke rumah tangga rentan</div></div>
+      <div class="item"><div class="n">Daya Beli</div><div class="l">Terlindungi karena dividen melampaui kenaikan biaya</div></div>
+      <div class="item"><div class="n">Sinyal Harga</div><div class="l">Mendorong industri beralih ke energi bersih</div></div>
+    </div>
+    <h2>Lebih dari Penerimaan: Paru-paru dan Keadilan Antargenerasi</h2>
+    <p>Bagi masyarakat luas, dividen tunai membantu menjaga daya beli rumah tangga rentan di tengah transisi energi yang tak terelakkan. Sinyal harga yang ditimbulkan pajak karbon mendorong industri dan pembangkit listrik beralih dari batu bara ke sumber energi yang lebih bersih, sehingga kualitas udara yang dihirup jutaan warga ikut membaik. Polusi udara di kota-kota besar Indonesia telah lama menjadi beban kesehatan publik yang mahal.</p>
+    <p>Pajak karbon yang dirancang dengan benar bukan hanya soal penerimaan negara, tetapi juga soal paru-paru anak-anak yang tumbuh di tengah kepungan asap kendaraan dan cerobong pabrik. Inilah keadilan antargenerasi yang dibumikan dalam kebijakan fiskal.</p>
+    <div class="callout"><p><strong>Fondasi sudah ada:</strong> Indonesia telah memiliki Bursa Karbon Indonesia (IDX Carbon) sejak 2023, serta infrastruktur penyaluran bantuan sosial yang relatif matang. Yang dibutuhkan kini hanyalah keberanian merangkainya menjadi satu kebijakan yang utuh dan konsisten.</p></div>
+    <h2>Risiko yang Diakui, Mitigasi yang Mungkin</h2>
+    <p>Tentu ada risiko yang patut diakui: tata kelola penyaluran dividen harus rapi agar tidak bocor, dan tarif harus dinaikkan secara hati-hati agar tidak mengejutkan dunia industri. Kabar baiknya, kedua hal itu dapat dimitigasi. Fondasinya sudah ada &mdash; sehingga yang dibutuhkan kini hanyalah keberanian merangkainya menjadi satu kebijakan yang utuh dan konsisten.</p>
+    <h2>Penutup: Fiskal dan Keadilan Sosial Bisa Tumbuh dari Akar yang Sama</h2>
+    <p>Pajak karbon berkeadilan adalah bukti bahwa fiskal dan keadilan sosial tidak harus saling berseberangan. Memperluas basis pajak ke arah emisi bukan sekadar menambah angka penerimaan, melainkan mengoreksi harga yang selama ini keliru &mdash; udara bersih yang dianggap gratis padahal sangat mahal bagi generasi mendatang.</p>
+    <p>Ketika setiap ton karbon yang dipungut kembali sebagai dividen bagi mereka yang paling membutuhkan, pajak tidak lagi terasa sebagai beban langit yang jauh dan abstrak, melainkan sebagai janji bumi yang nyata: bahwa ketahanan fiskal dan keadilan sosial bisa tumbuh dari akar yang sama.</p>
+    <p class="src-note">Sumber data: Kementerian Keuangan RI (tax ratio &amp; penerimaan pajak 2025); UU Nomor 7 Tahun 2021 tentang Harmonisasi Peraturan Perpajakan (UU HPP); PP Nomor 40 Tahun 2025; National Environment Agency Singapura (tarif pajak karbon); Bursa Karbon Indonesia &mdash; IDX Carbon (2023). Model revenue recycling merujuk pada pengalaman Kanada (Government of Canada, Climate Action Incentive Payment).</p>`},
+
+  a6:{cat:"Perilaku Keuangan", grad:"g-beh", img:"https://images.unsplash.com/photo-1579621970563-430f63602022?w=800&q=80",
+    imgCaption:"Saat gaji naik, pengeluaran sering ikut naik tanpa disadari.",
+    title:"Lifestyle Inflation: Saat Gaji Naik, Tabungan Tetap",
+    dek:"Promosi datang, pendapatan bertambah, tapi rekening tak kunjung menebal. Inilah jebakan halus yang menjerat banyak pekerja.",
+    meta:"26 April 2026", read:"7 menit baca", date:"26 Apr 2026",
+    tags:["Lifestyle Inflation","Perilaku Keuangan","Gaya Hidup","Menabung"],
+    body:`
+    <p>Ada sebuah teka-teki yang membingungkan banyak orang. Dulu, saat gaji masih kecil, mereka entah bagaimana bisa bertahan. Kini setelah beberapa kali kenaikan gaji dan mungkin sebuah promosi jabatan, penghasilan mereka berlipat — tetapi anehnya, tabungan tak kunjung bertambah dan rasa "cukup" tak kunjung datang. Fenomena ini punya nama: <em>lifestyle inflation</em>, atau inflasi gaya hidup.</p>
+    <h2>Ketika Pengeluaran Mengejar Pemasukan</h2>
+    <p>Inflasi gaya hidup terjadi ketika pengeluaran seseorang naik seiring dengan naiknya pendapatan, sering kali tanpa disadari. Gaji naik, lalu makan di luar menjadi lebih sering. Bonus cair, lalu gawai diganti dengan model terbaru. Promosi datang, lalu mobil diupgrade dan langganan berbayar bertambah. Satu per satu pengeluaran ini terasa wajar dan pantas — toh kita sudah bekerja keras dan layak menikmatinya.</p>
+    <p>Masalahnya bukan pada menikmati hasil kerja. Masalahnya muncul ketika kenaikan pengeluaran menyamai atau bahkan melampaui kenaikan pendapatan, sehingga selisih yang seharusnya bisa ditabung atau diinvestasikan justru lenyap tertelan gaya hidup baru. Inilah sebabnya seseorang bisa berpenghasilan dua kali lipat namun tetap merasa hidup "pas-pasan".</p>
+    <blockquote>Bukan seberapa besar yang Anda hasilkan yang menentukan kekayaan, melainkan seberapa besar yang Anda pertahankan.</blockquote>
+    <h2>Mengapa Kita Mudah Terjebak</h2>
+    <p>Ada beberapa kekuatan psikologis yang membuat inflasi gaya hidup begitu licin. Pertama, manusia cepat beradaptasi — kenyamanan baru segera terasa normal, dan kita pun mendamba lebih (fenomena yang oleh psikolog disebut <em>hedonic adaptation</em>). Kedua, tekanan sosial: melihat rekan atau lingkungan tampil dengan standar tertentu mendorong kita menyesuaikan diri. Ketiga, pembenaran diri: "aku pantas mendapatkannya" adalah kalimat yang sangat mudah diucapkan setelah gaji naik.</p>
+    <div class="pullstat">
+      <div class="item"><div class="n">Adaptasi</div><div class="l">Kenyamanan baru cepat terasa biasa, lalu menuntut lebih</div></div>
+      <div class="item"><div class="n">Selisih</div><div class="l">Yang seharusnya ditabung, justru tertelan</div></div>
+      <div class="item"><div class="n">Diam-diam</div><div class="l">Terjadi tanpa keputusan sadar yang besar</div></div>
+    </div>
+    <h2>Menjinakkannya Tanpa Hidup Pelit</h2>
+    <p>Kabar baiknya, melawan inflasi gaya hidup tidak berarti hidup serba menahan diri. Kuncinya adalah membuat keputusan secara sadar, bukan reaktif. Salah satu strategi yang banyak dianjurkan adalah <strong>"menabung dulu kenaikannya"</strong>: setiap kali gaji naik, sisihkan sebagian besar dari kenaikan itu ke tabungan atau investasi sebelum sempat terbiasa membelanjakannya. Dengan begitu, Anda tetap menikmati sebagian peningkatan, tetapi tidak membiarkan seluruhnya menguap.</p>
+    <p>Strategi lain adalah memisahkan antara keinginan yang benar-benar menambah kebahagiaan jangka panjang dan yang sekadar membeli kesan sesaat. Tidak semua peningkatan gaya hidup buruk — sebagian memang meningkatkan kualitas hidup secara nyata. Yang perlu dihindari adalah pengeluaran yang naik secara otomatis tanpa pernah benar-benar Anda pilih.</p>
+    <h2>Penutup</h2>
+    <p>Pada akhirnya, gaji yang naik adalah berkah yang patut disyukuri. Tetapi berkah itu hanya menjadi kebebasan finansial jika sebagiannya dijaga, bukan seluruhnya dihabiskan. Pertanyaannya bukan "berapa banyak yang bisa saya beli sekarang", melainkan "berapa banyak masa depan yang sedang saya bangun". Karena hidup yang lebih baik bukan tentang membelanjakan lebih banyak, melainkan tentang memilih dengan lebih sadar.</p>`}
+};
+
+const ORDER = ["a7","a1","a2","a3","a4","a5","a6"];
+
+function thumbHTML(a, big){
+  return '<div class="pthumb '+a.grad+'" style="overflow:hidden">'
+    +'<img src="'+a.img+'" alt="" onload="this.style.opacity=1;this.parentElement.style.background=\'none\'" onerror="this.remove()" style="opacity:0;transition:opacity .3s">'
+    +'</div>';
+}
+
+function renderPosts(filter, search){
+  const list = document.getElementById('postList');
+  let html='';
+  ORDER.forEach(function(id,idx){
+    const a=ARTICLES[id];
+    if(filter && filter!=='semua' && a.cat!==filter) return;
+    if(search){
+      const hay=(a.title+' '+a.dek+' '+a.cat+' '+a.tags.join(' ')).toLowerCase();
+      if(hay.indexOf(search.toLowerCase())===-1) return;
+    }
+    const feat=(idx===0 && (!filter||filter==='semua') && !search);
+    html+='<article class="post '+(feat?'feat':'')+'" onclick="openArticle(\''+id+'\')">'
+      +'<div class="ptext">'
+      +'<div class="pauthor"><span class="av">S</span> Sanjaya Ditha</div>'
+      +'<h2>'+a.title+'</h2>'
+      +'<p class="pdek">'+a.dek+'</p>'
+      +'<div class="pmeta"><span class="cat">'+a.cat+'</span><span class="dot"></span><span>'+a.date+'</span><span class="dot"></span><span>'+a.read+'</span></div>'
+      +'</div>'+thumbHTML(a,feat)+'</article>';
+  });
+  if(!html) html='<p style="padding:40px 0;color:var(--ink-faint);font-size:15px">Tidak ada tulisan yang cocok.</p>';
+  list.innerHTML=html;
+}
+
+function renderPicks(){
+  const picks=["a7","a1","a3"];
+  document.getElementById('staffPicks').innerHTML = picks.map(function(id,i){
+    const a=ARTICLES[id];
+    return '<div class="side-pick" onclick="openArticle(\''+id+'\')">'
+      +'<div class="rank">0'+(i+1)+'</div>'
+      +'<div class="sp-txt"><div class="spa"><span class="av">S</span> Sanjaya Ditha</div><h4>'+a.title+'</h4></div></div>';
+  }).join('');
+}
+
+let activeTab='semua';
+function filterTab(cat,btn){
+  activeTab=cat;
+  document.querySelectorAll('.tabs button').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderPosts(cat,null);
+}
+function searchPosts(v){ renderPosts(activeTab, v); }
+
+function openArticle(id){
+  const a=ARTICLES[id];
+  if(!a) return;
+  document.getElementById('home').style.display='none';
+  document.getElementById('articleView').style.display='block';
+  document.getElementById('artCat').textContent=a.cat;
+  document.getElementById('artTitle').textContent=a.title;
+  document.getElementById('artDek').textContent=a.dek;
+  document.getElementById('artMeta').textContent=a.meta+' · '+a.read;
+  document.getElementById('artHeroImg').innerHTML=
+    '<div class="frame '+a.grad+'" style="overflow:hidden">'
+    +'<img src="'+a.img+'" alt="" onload="this.style.opacity=1;this.parentElement.style.background=\'none\'" onerror="this.remove()" style="opacity:0;transition:opacity .35s">'
+    +'</div><figcaption>'+a.imgCaption+'</figcaption>';
+  let body=a.body;
+  if(a.inlineImg){
+    const inline='<figure class="inline-img"><div class="frame '+a.grad+'" style="overflow:hidden">'
+      +'<img src="'+a.inlineImg+'" alt="" onload="this.style.opacity=1;this.parentElement.style.background=\'none\'" onerror="this.remove()" style="opacity:0;transition:opacity .35s">'
+      +'</div><figcaption>'+a.inlineCaption+'</figcaption></figure>';
+    body=body.replace('[[INLINE_IMG]]', inline);
+  } else { body=body.replace('[[INLINE_IMG]]',''); }
+  document.getElementById('artBody').innerHTML=body;
+  document.getElementById('artTags').innerHTML=a.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function goHome(){
+  document.getElementById('articleView').style.display='none';
+  document.getElementById('home').style.display='block';
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function scrollToId(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+function subscribe(){
+  const m=document.getElementById('newsmail').value.trim();
+  if(m&&m.indexOf('@')!==-1){document.getElementById('newsok').style.display='block';document.getElementById('newsmail').value='';}
+  else{document.getElementById('newsmail').style.borderColor='var(--accent)';}
+}
+window.addEventListener('scroll',function(){
+  const h=document.documentElement;
+  document.getElementById('progress').style.width=((h.scrollTop)/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+
+renderPosts('semua',null);
+renderPicks();
+</script>
+</body>
+</html>
